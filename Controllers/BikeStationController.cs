@@ -14,7 +14,7 @@ namespace VeloVMONT.Controllers
         public async Task<IActionResult> Index()
         {
             var bikestations = await ProcessBikeStation();
-            ViewBag.allBikeStations = bikestations;
+            ViewBag.allBikeStations = bikestations.OrderBy(x => x.name );
             return View();
         }
 
