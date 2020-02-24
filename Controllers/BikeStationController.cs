@@ -18,6 +18,13 @@ namespace VeloVMONT.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Map()
+        {
+            var bikestations = await ProcessBikeStation();
+            ViewBag.allBikeStations = bikestations;
+            return View();
+        }
+
         private static async Task<List<Models.BikeStation>> ProcessBikeStation()
         {
             client.DefaultRequestHeaders.Accept.Clear();
