@@ -10,7 +10,7 @@ namespace VeloVMONT.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
-        public string numberBike { get; set; }
+        public int numberBike { get; set; }
         public string message { get; set; }
     }
 }
