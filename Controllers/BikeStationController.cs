@@ -51,6 +51,33 @@ namespace VeloVMONT.Controllers
 
         }
 
+        public IActionResult BikeSupport()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> BikeSupport([Bind("numberBike, message")] Models.SupportBike supportBike)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _context.Add(supportBike);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            catch (DbUpdateException /* ex */)
+            {   
+                //Log the error (uncomment ex variable name and write a log.
+                ModelState.AddModelError("", "Unable to save changes. " +
+                    "Try again, and if the problem persists " +
+                    "see your system administrator.");
+            }
+            return View(supportBike);
+        }
+
         private static async Task<List<Models.BikeStation>> ProcessBikeStation()
         {
             client.DefaultRequestHeaders.Accept.Clear();

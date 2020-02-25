@@ -12,10 +12,12 @@ namespace VeloVMONT.Data
         {
         }
         public DbSet<Models.Favoris> Favoris { get; set; }
+        public DbSet<Models.SupportBike> SupportBke { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Models.Favoris>().ToTable("Favoris");
+            modelBuilder.Entity<Models.SupportBike>().ToTable("SupportBike");
         }
     }
 }
