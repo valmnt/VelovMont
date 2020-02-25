@@ -1,0 +1,32 @@
+﻿@model IEnumerable<VeloVMONT.Models.Favoris>
+@{
+
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idFav)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idFav)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

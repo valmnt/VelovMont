@@ -11,6 +11,7 @@
                     <th scope="col">Address</th>
                     <th scope="col">Vélos Disponibles</th>
                     <th scope="col">Dernières MAJ</th>
+                    <th scope="col">Ajouter Favoris</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,6 +22,7 @@
                     <td>@bikeStation.address</td>
                     <td>@bikeStation.available_bikes</td>
                     <td>@bikeStation.last_update</td>
+                    <td><a asp-action="favAdd" asp-route-id="@bikeStation.gid">Ajouter aux favoris</a></td>
                 </tr>
                 }
             </tbody>

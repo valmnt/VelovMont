@@ -5,11 +5,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
 using System.Text.Json;
+using Microsoft.EntityFrameworkCore;
 
 namespace VeloVMONT.Controllers
 {
     public class BikeStationController : Controller
     {
+        private readonly Data.FavorisContext _context;
+
+        public BikeStationController(Data.FavorisContext context) {
+            _context = context;
+        }
+        
         private static readonly HttpClient client = new HttpClient();
         public async Task<IActionResult> Index()
         {
@@ -23,6 +30,25 @@ namespace VeloVMONT.Controllers
             var bikestations = await ProcessBikeStation();
             ViewBag.allBikeStations = bikestations;
             return View();
+        }
+
+        public async Task<IActionResult> Favoris()
+        {
+            return View(await _context.Favoris.ToListAsync());
+        }
+
+        public async Task<IActionResult> favAdd(int id)
+        {
+            if (id is int)
+            {
+                var fav = new Models.Favoris();
+                fav.idFav = id;
+                _context.Favoris.Add(fav);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return NotFound();
+
         }
 
         private static async Task<List<Models.BikeStation>> ProcessBikeStation()
