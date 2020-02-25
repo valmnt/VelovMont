@@ -18,12 +18,22 @@ namespace VeloVMONT.Controllers
         }
         
         private static readonly HttpClient client = new HttpClient();
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string city = "Lyon")
         {
-            var bikestations = await ProcessBikeStation();
-            ViewBag.allBikeStations = bikestations.OrderBy(x => x.name );
+            if(city == "Lyon")
+            {
+                var bikestations = await ProcessBikeStation();
+                ViewBag.allBikeStations = bikestations.OrderBy(x => x.name);
+
+            }
+            else if(city == "bordeaux")
+            {
+                var bikestations = await ProcessBikeStationBordeaux();
+                ViewBag.allBikeStations = bikestations;
+            }
             return View();
         }
+            
 
         public async Task<IActionResult> Map()
         {
@@ -86,6 +96,23 @@ namespace VeloVMONT.Controllers
             var streamTask = client.GetStreamAsync("https://download.data.grandlyon.com/ws/rdata/jcd_jcdecaux.jcdvelov/all.json");
             var bikestations = await JsonSerializer.DeserializeAsync<Models.RootObject>(await streamTask);
             return bikestations.values;
+        }
+
+        private static async Task<List<Models.BikeStation>> ProcessBikeStationBordeaux()
+        {
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Add("User-Agent", ".NET Foundation Repository Reporter");
+
+            var streamTask = client.GetStreamAsync("https://api.alexandredubois.com/vcub-backend/vcub.php");
+            var bikestationsBordeaux = await JsonSerializer.DeserializeAsync<List<Models.BikeStationBordeaux>>(await streamTask);
+            var listbikeStation = new List<Models.BikeStation>();
+                
+            foreach(var bikestation in bikestationsBordeaux)
+            {
+                var bikestations = new Models.BikeStation(bikestation);
+                listbikeStation.Add(bikestations);
+            }
+            return listbikeStation;
         }
     }
 }

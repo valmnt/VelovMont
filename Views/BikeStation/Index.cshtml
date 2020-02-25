@@ -7,7 +7,6 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Name</th>
                     <th scope="col">Address</th>
                     <th scope="col">Vélos Disponibles</th>
                     <th scope="col">Dernières MAJ</th>
@@ -17,8 +16,7 @@
             <tbody>
                 @foreach (var bikeStation in bikeStations)
                 {
-                <tr>
-                    <td>@bikeStation.name</td>
+                <tr> 
                     <td>@bikeStation.address</td>
                     <td>@bikeStation.available_bikes</td>
                     <td>@bikeStation.last_update</td>
@@ -28,4 +26,5 @@
             </tbody>
         </table>
     </div>
+
 

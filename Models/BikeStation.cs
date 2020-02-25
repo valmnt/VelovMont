@@ -7,6 +7,22 @@ namespace VeloVMONT.Models
 {
     public class BikeStation
     {
+        public BikeStation()
+        {
+
+        }
+
+        public BikeStation(BikeStationBordeaux bikestationBordeaux)
+        {
+            this.gid = bikestationBordeaux.id.ToString();
+            this.available_bikes = bikestationBordeaux.bike_count_total.ToString();
+            this.lng = bikestationBordeaux.longitude;
+            this.lat = bikestationBordeaux.latitude;
+            this.bike_stands = bikestationBordeaux.slot_count.ToString();
+            this.address = bikestationBordeaux.name;
+            this.last_update = "Indisponible";
+
+        }
 
         public string number { get; set; }
         public string pole { get; set; }
