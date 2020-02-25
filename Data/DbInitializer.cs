@@ -7,7 +7,7 @@ namespace VeloVMONT.Data
 {
     public class DbInitializer
     {
-        public static void Initialize(FavorisContext context)
+        public static void Initialize(BikeStationsVelovMontContext context)
         {
             context.Database.EnsureCreated();
                 

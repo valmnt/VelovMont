@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace VeloVMONT.Data
 {
-    public class FavorisContext : DbContext
+    public class BikeStationsVelovMontContext : DbContext
     {
-        public FavorisContext(DbContextOptions<FavorisContext> options) : base(options)
+        public BikeStationsVelovMontContext(DbContextOptions<BikeStationsVelovMontContext> options) : base(options)
         {
         }
         public DbSet<Models.Favoris> Favoris { get; set; }

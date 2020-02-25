@@ -11,9 +11,9 @@ namespace VeloVMONT.Controllers
 {
     public class BikeStationController : Controller
     {
-        private readonly Data.FavorisContext _context;
+        private readonly Data.BikeStationsVelovMontContext _context;
 
-        public BikeStationController(Data.FavorisContext context) {
+        public BikeStationController(Data.BikeStationsVelovMontContext context) {
             _context = context;
         }
         

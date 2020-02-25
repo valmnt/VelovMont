@@ -23,7 +23,7 @@ namespace VeloVMONT
                 var services = scope.ServiceProvider;
                 try
                 {
-                    var context = services.GetRequiredService<Data.FavorisContext>();
+                    var context = services.GetRequiredService<Data.BikeStationsVelovMontContext>();
                     Data.DbInitializer.Initialize(context);
                 }
                 catch (Exception ex)
