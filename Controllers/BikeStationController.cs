@@ -24,9 +24,8 @@ namespace VeloVMONT.Controllers
             {
                 var bikestations = await ProcessBikeStation();
                 ViewBag.allBikeStations = bikestations.OrderBy(x => x.name);
-
             }
-            else if(city == "bordeaux")
+            else if(city == "Bordeaux")
             {
                 var bikestations = await ProcessBikeStationBordeaux();
                 ViewBag.allBikeStations = bikestations;

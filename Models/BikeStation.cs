@@ -19,8 +19,7 @@ namespace VeloVMONT.Models
             this.lng = bikestationBordeaux.longitude;
             this.lat = bikestationBordeaux.latitude;
             this.bike_stands = bikestationBordeaux.slot_count.ToString();
-            this.address = bikestationBordeaux.name;
-            this.last_update = "Indisponible";
+            this.name = bikestationBordeaux.name;
 
         }
 

@@ -2,29 +2,64 @@
 @{
     var bikeStations = ViewBag.allBikeStations;
 }
+    <button id="bdx" class="btn btn-primary"><a style="text-decoration:none; color:white;" href="https://localhost:44310/BikeStation?city=Bordeaux">Bordeaux</a></button>
+    <button id="lyn" class="btn btn-primary"><a style="text-decoration:none; color:white;" href="https://localhost:44310/BikeStation?city=Lyon">Lyon</a></button>
 
     <div class="container">
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Address</th>
+                    <th id="name" scope="col">Name</th>
                     <th scope="col">Vélos Disponibles</th>
-                    <th scope="col">Dernières MAJ</th>
                     <th scope="col">Ajouter Favoris</th>
+                    <th id="address" scope="col">Address</th>
+                    <th id="maj" scope="col">Dernières MAJ</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var bikeStation in bikeStations)
                 {
-                <tr> 
-                    <td>@bikeStation.address</td>
+                <tr>
+                    <td id="bikeName">@bikeStation.name</td>
                     <td>@bikeStation.available_bikes</td>
-                    <td>@bikeStation.last_update</td>
                     <td><a asp-action="favAdd" asp-route-id="@bikeStation.gid">Ajouter aux favoris</a></td>
+                    <td id="bikeAddress">@bikeStation.address</td>
+                    <td id="bikeUp">@bikeStation.last_update</td>
                 </tr>
                 }
             </tbody>
         </table>
     </div>
+
+<script>
+    function $_GET(param) {
+	var vars = {};
+	window.location.href.replace( location.hash, '' ).replace( 
+		/[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+		function( m, key, value ) { // callback
+			vars[key] = value !== undefined ? value : '';
+		}
+	);
+
+	if ( param ) {
+		return vars[param] ? vars[param] : null;	
+	}
+	return vars;
+    }
+    var city = $_GET('city')
+    console.log(city)
+
+    if (city == "Bordeaux") {
+        document.getElementById('address').style.display = "none"
+        document.getElementById('maj').style.display = "none"
+        document.getElementById('bikeAddress').style.display = "none"
+        document.getElementById('bikeUp').style.display = "none"
+        document.getElementById('bdx').style.display = "none"
+    }
+    else if (city == "Lyon" || city == null) {
+         document.getElementById('lyn').style.display = "none"  
+    }
+ 
+</script>
 
 
