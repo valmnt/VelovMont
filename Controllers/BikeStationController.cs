@@ -34,10 +34,19 @@ namespace VeloVMONT.Controllers
         }
             
 
-        public async Task<IActionResult> Map()
+        public async Task<IActionResult> Map(string city = "Lyon")
         {
-            var bikestations = await ProcessBikeStation();
-            ViewBag.allBikeStations = bikestations;
+            if(city == "Lyon" || city == null)
+            {
+                var bikestations = await ProcessBikeStation();
+                ViewBag.allBikeStations = bikestations;
+            }
+            else if(city == "Bordeaux")
+            {
+                var bikestationsBordeaux = await ProcessBikeStationBordeaux();
+                ViewBag.allBikeStations = bikestationsBordeaux;
+            }
+
             return View();
         }
 
