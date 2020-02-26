@@ -2,9 +2,8 @@
 @{
     var bikeStations = ViewBag.allBikeStations;
 }
-    <button id="bdx" class="btn btn-primary"><a style="text-decoration:none; color:white;" href="https://localhost:44310/BikeStation?city=Bordeaux">Bordeaux</a></button>
-    <button id="lyn" class="btn btn-primary"><a style="text-decoration:none; color:white;" href="https://localhost:44310/BikeStation?city=Lyon">Lyon</a></button>
-
+    <p id="bdx">@Html.ActionLink("Bordeaux", "Index", new { city = "Bordeaux" })</p>
+    <p id="lyn">@Html.ActionLink("Lyon", "Index", new { city = "Lyon" })</p>
     <div class="container">
         <table class="table">
             <thead>
