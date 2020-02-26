@@ -27,8 +27,8 @@ namespace VeloVMONT.Controllers
             }
             else if(city == "Bordeaux")
             {
-                var bikestations = await ProcessBikeStationBordeaux();
-                ViewBag.allBikeStations = bikestations;
+                var bikestationsBordeaux = await ProcessBikeStationBordeaux();
+                ViewBag.allBikeStations = bikestationsBordeaux;
             }
             return View();
         }
@@ -106,9 +106,9 @@ namespace VeloVMONT.Controllers
             var bikestationsBordeaux = await JsonSerializer.DeserializeAsync<List<Models.BikeStationBordeaux>>(await streamTask);
             var listbikeStation = new List<Models.BikeStation>();
                 
-            foreach(var bikestation in bikestationsBordeaux)
+            foreach(var bikestationBordeaux in bikestationsBordeaux)
             {
-                var bikestations = new Models.BikeStation(bikestation);
+                var bikestations = new Models.BikeStation(bikestationBordeaux);
                 listbikeStation.Add(bikestations);
             }
             return listbikeStation;
